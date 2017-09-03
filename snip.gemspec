@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Hayato Kawai"]
   spec.email         = ["fohte.hk@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = "A CLI tool for management snippets"
+  spec.description   = "A CLI tool for management snippets"
+  spec.homepage      = "https://github.com/fohte/snip"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
