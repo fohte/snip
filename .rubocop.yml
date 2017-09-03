@@ -1,0 +1,32 @@
+AllCops:
+  TargetRubyVersion: 2.1
+
+Layout/MultilineAssignmentLayout:
+  Enabled: true
+  EnforcedStyle: new_line
+
+Style/AutoResourceCleanup:
+  Enabled: true
+
+Style/CollectionMethods:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
+
+Style/MethodCalledOnDoEndBlock:
+  Enabled: true
+
+Style/BlockDelimiters:
+  Enabled: true
+  EnforcedStyle: braces_for_chaining
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/NumericPredicate:
+  EnforcedStyle: comparison
+
+Style/TernaryParentheses:
+  EnforcedStyle: require_parentheses_when_complex
