@@ -1,19 +1,19 @@
-require "thor"
+require 'thor'
 
 module Snip
   class CLI < Thor
-    desc "add", ""
+    desc 'add', ''
     def add
 
     end
 
-    desc "print", ""
-    map "p" => :print
+    desc 'print', ''
+    map 'p' => :print
     def print
 
     end
 
-    desc "list", ""
+    desc 'list', ''
     def list
 
     end

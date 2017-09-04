@@ -1,2 +1,2 @@
-require "snip/version"
-require "snip/cli"
+require 'snip/version'
+require 'snip/cli'

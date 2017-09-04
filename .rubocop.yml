@@ -23,7 +23,7 @@ Style/BlockDelimiters:
 
 Style/StringLiterals:
   Enabled: true
-  EnforcedStyle: double_quotes
+  EnforcedStyle: single_quotes
 
 Style/NumericPredicate:
   EnforcedStyle: comparison
