@@ -30,3 +30,11 @@ Style/NumericPredicate:
 
 Style/TernaryParentheses:
   EnforcedStyle: require_parentheses_when_complex
+
+Style/TrailingCommaInLiteral:
+  Enabled: true
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArguments:
+  Enabled: true
+  EnforcedStyleForMultiline: comma
