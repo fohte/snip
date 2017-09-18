@@ -16,6 +16,7 @@ module Snip
     end
 
     desc 'new SNIPPET_NAME', ''
+    map 'n' => :new
     def new(name)
       storage = Storage.new(name)
       pipe = stdin
@@ -32,6 +33,7 @@ module Snip
     end
 
     desc 'edit SNIPPET_NAME', ''
+    map 'e' => :edit
     def edit(name)
       storage = Storage.new(name)
       raise NoSuchSnippetError, "no such snippet: #{name}" unless storage.file?
@@ -41,6 +43,7 @@ module Snip
 
     desc 'show SNIPPET_NAME', ''
     option :params, type: :hash, aliases: 'p'
+    map 's' => :show
     def show(name)
       storage = Storage.new(name)
       raise NoSuchSnippetError, "no such snippet: #{name}" unless storage.file?
@@ -51,6 +54,8 @@ module Snip
     end
 
     desc 'list', ''
+    map 'ls' => :list
+    map 'l' => :list
     def list
       List.echo
     end
