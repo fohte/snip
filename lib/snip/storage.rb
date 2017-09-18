@@ -26,6 +26,14 @@ module Snip
       !path.nil?
     end
 
+    def file?
+      exist? && path.file?
+    end
+
+    def dir?
+      exist? && path.dir?
+    end
+
     def write(string = '')
       (path || default_path).tap do |f|
         f.dirname.mkpath unless f.dirname.exist?

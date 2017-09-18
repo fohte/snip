@@ -1,4 +1,5 @@
 require 'thor'
+require 'erb'
 
 module Snip
   class CLI < Thor
@@ -33,14 +34,20 @@ module Snip
     desc 'edit SNIPPET_NAME', ''
     def edit(name)
       storage = Storage.new(name)
-      raise NoSuchSnippetError, "no such snippet: #{name}" unless storage.exist?
+      raise NoSuchSnippetError, "no such snippet: #{name}" unless storage.file?
 
       run_editor(storage.path)
     end
 
     desc 'show SNIPPET_NAME', ''
+    option :params, type: :hash, aliases: 'p'
     def show(name)
-      puts File.read(Config.snippets(name))
+      storage = Storage.new(name)
+      raise NoSuchSnippetError, "no such snippet: #{name}" unless storage.file?
+
+      snip = Snippet.new(storage.path.read)
+      snip.params = options[:params] if options[:params]
+      snip.print
     end
 
     desc 'list', ''
