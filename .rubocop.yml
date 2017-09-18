@@ -40,4 +40,5 @@ Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: comma
 
 Metrics/BlockLength:
-  Exclude: spec/**/*.rb
+  Exclude:
+    - spec/**/*.rb
