@@ -2,6 +2,18 @@ require 'thor'
 
 module Snip
   class CLI < Thor
+    class << self
+      def exit_on_failure?
+        true
+      end
+
+      def start(*)
+        super
+      rescue SnipError => e
+        puts "\e[31mError: #{e}\e[0m"
+      end
+    end
+
     desc 'new SNIPPET_NAME', ''
     def new(name)
       storage = Storage.new(name)
@@ -15,7 +27,15 @@ module Snip
       end
 
       storage.write
-      system("$EDITOR #{storage.path}")
+      run_editor(storage.path)
+    end
+
+    desc 'edit SNIPPET_NAME', ''
+    def edit(name)
+      storage = Storage.new(name)
+      raise NoSuchSnippetError, "no such snippet: #{name}" unless storage.exist?
+
+      run_editor(storage.path)
     end
 
     desc 'show SNIPPET_NAME', ''
@@ -54,6 +74,14 @@ module Snip
           exit
         end
       end
+    end
+
+    def run_editor(filepath)
+      system("#{editor} #{filepath}")
+    end
+
+    def editor
+      ENV['EDITOR'] || 'vim'
     end
   end
 end

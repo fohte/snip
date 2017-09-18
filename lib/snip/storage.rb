@@ -9,8 +9,9 @@ module Snip
     def path
       return default_path if default_path.exist?
 
-      f = Config.snippets.join(*@group, @name)
-      return f if f.exist?
+      Config.snippets.join(*@group, @name).tap do |f|
+        return f if f.exist?
+      end
 
       nil
     end
@@ -26,9 +27,10 @@ module Snip
     end
 
     def write(string = '')
-      f = path || default_path
-      f.dirname.mkpath unless f.dirname.exist?
-      f.write(string)
+      (path || default_path).tap do |f|
+        f.dirname.mkpath unless f.dirname.exist?
+        f.write(string)
+      end
     end
 
     private
