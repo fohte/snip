@@ -4,9 +4,10 @@ module Snip
   class Config
     class << self
       def root
-        @root ||= Pathname.new(home_dir).tap do |f|
-          f.mkpath unless f.exist?
-        end
+        @root ||=
+          Pathname.new(home_dir).tap do |f|
+            f.mkpath unless f.exist?
+          end
       end
 
       def snippets

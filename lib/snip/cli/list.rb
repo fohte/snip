@@ -8,20 +8,27 @@ module Snip
 
         private
 
-        def _echo(root_path = Config.snippets, indent = 0)
-          p = ->(msg) { puts ' ' * indent + msg.to_s }
-
+        def _echo(root_path = Config.snippets, indent: 0)
           root_path.children.each do |path|
             if path.directory?
-              print "\e[1;34m" # enable bold and blue text
-              p.call "#{path.basename}:"
-              print "\e[0m"
-
-              _echo(path, indent + 2)
+              stdout(dir(path), indent: indent)
+              _echo(path, indent: indent + 2)
             end
 
-            p.call path.basename.to_s.sub(Config.snippets.to_s, '').chomp('.erb') if path.file?
+            stdout(file(path), indent: indent) if path.file?
           end
+        end
+
+        def stdout(*msgs, indent: 0)
+          puts ' ' * indent + msgs.join
+        end
+
+        def file(path)
+          path.basename.to_s.sub(Config.snippets.to_s, '').chomp('.erb')
+        end
+
+        def dir(path)
+          "\e[1;34m#{path.basename}:\e[0m"
         end
       end
     end
