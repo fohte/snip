@@ -38,3 +38,6 @@ Style/TrailingCommaInLiteral:
 Style/TrailingCommaInArguments:
   Enabled: true
   EnforcedStyleForMultiline: comma
+
+Metrics/BlockLength:
+  Exclude: spec/**/*.rb

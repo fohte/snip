@@ -1,4 +1,5 @@
 require 'snip/version'
 require 'snip/cli'
+require 'snip/cli/list'
 require 'snip/config'
-require 'snip/naming'
+require 'snip/storage'
