@@ -2,7 +2,7 @@ module Snip
   class Snippet
     METADATA_REGEXP = Regexp.new("<%\s*#\s*(.*):\s*(.*)\s*%>")
 
-    attr_accessor :params
+    attr_reader :params
 
     def initialize(string)
       @string = string
@@ -16,6 +16,11 @@ module Snip
 
     def read
       @erb.result(binding_class)
+    end
+
+    def params=(value)
+      raise ArgumentError, 'not a hash' unless value.is_a?(Hash)
+      @params = value.map { |k, v| [k.to_sym, v] }.to_h
     end
 
     private
