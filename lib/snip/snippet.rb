@@ -20,7 +20,7 @@ module Snip
 
     def params=(value)
       raise ArgumentError, 'not a hash' unless value.is_a?(Hash)
-      @params = value.map { |k, v| [k.to_sym, v] }.to_h
+      @params.merge!(value.map { |k, v| [k.to_sym, v] }.to_h)
     end
 
     private
