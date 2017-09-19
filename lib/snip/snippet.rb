@@ -26,7 +26,7 @@ module Snip
     private
 
     def declared_params
-      return unless metadata.key?('params')
+      return [] unless metadata.key?('params')
       metadata['params'].split(',').map(&:strip).map(&:to_sym)
     end
 
