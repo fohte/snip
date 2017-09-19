@@ -43,13 +43,17 @@ module Snip
 
     desc 'show SNIPPET_NAME', ''
     option :params, type: :hash, aliases: 'p'
+    option 'from-stdin', type: :string
     map 's' => :show
     def show(name)
       storage = Storage.new(name)
       raise NoSuchSnippetError, "no such snippet: #{name}" unless storage.file?
 
+      pipe = stdin
+
       snip = Snippet.new(storage.path.read)
       snip.params = options[:params] if options[:params]
+      snip.params = { options['from-stdin'] => pipe } if options['from-stdin']
       snip.print
     end
 
