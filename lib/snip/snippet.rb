@@ -22,7 +22,7 @@ module Snip
 
     def declared_params
       return unless metadata.key?('params')
-      metadata['params'].split(',').map(&:strip)
+      metadata['params'].split(',').map(&:strip).map(&:to_sym)
     end
 
     def metadata
@@ -49,8 +49,8 @@ module Snip
       private
 
       def define_reader_methods!(hash = {})
-        hash.each do |k, v|
-          define_singleton_method(k) { v }
+        define_singleton_method(:params) do
+          hash
         end
       end
     end
